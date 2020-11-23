@@ -30,46 +30,14 @@ public class theFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AboutPopup = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jFileChooser1 = new javax.swing.JFileChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         Jfile = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemRosterLoad = new javax.swing.JMenuItem();
+        jMenuItemAddAtendence = new javax.swing.JMenuItem();
+        jMenuItemSave = new javax.swing.JMenuItem();
+        jMenuItemPlot = new javax.swing.JMenuItem();
         jabout = new javax.swing.JMenu();
-
-        AboutPopup.setMinimumSize(new java.awt.Dimension(400, 300));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Team Members");
-
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout AboutPopupLayout = new javax.swing.GroupLayout(AboutPopup.getContentPane());
-        AboutPopup.getContentPane().setLayout(AboutPopupLayout);
-        AboutPopupLayout.setHorizontalGroup(
-            AboutPopupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AboutPopupLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(160, 160, 160))
-            .addGroup(AboutPopupLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(127, 127, 127))
-        );
-        AboutPopupLayout.setVerticalGroup(
-            AboutPopupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AboutPopupLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(42, 42, 42))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CSE360 Final Project");
@@ -81,21 +49,26 @@ public class theFrame extends javax.swing.JFrame {
         Jfile.setText("File");
         Jfile.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem1.setText("Load a Roster");
-        Jfile.add(jMenuItem1);
+        jMenuItemRosterLoad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItemRosterLoad.setText("Load a Roster");
+        jMenuItemRosterLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRosterLoadActionPerformed(evt);
+            }
+        });
+        Jfile.add(jMenuItemRosterLoad);
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem2.setText("Add Attendence");
-        Jfile.add(jMenuItem2);
+        jMenuItemAddAtendence.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItemAddAtendence.setText("Add Attendence");
+        Jfile.add(jMenuItemAddAtendence);
 
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem3.setText("Save");
-        Jfile.add(jMenuItem3);
+        jMenuItemSave.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItemSave.setText("Save");
+        Jfile.add(jMenuItemSave);
 
-        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem4.setText("Plot Data");
-        Jfile.add(jMenuItem4);
+        jMenuItemPlot.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItemPlot.setText("Plot Data");
+        Jfile.add(jMenuItemPlot);
 
         jMenuBar1.add(Jfile);
 
@@ -114,11 +87,11 @@ public class theFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGap(0, 652, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,15 +104,28 @@ public class theFrame extends javax.swing.JFrame {
         UIManager.put("OptionPane.minimumSize",new Dimension(400,300)); 
         UIManager.put("OptionPane.messageFont", new Font("Times New Roman", Font.BOLD, 27));
         UIManager.put("OptionPane.buttonFont", new Font("Times New Roman", Font.BOLD, 27));
-        JOptionPane.showMessageDialog(f,"Luis Gonzalez\nRoberto Marracino\nNicholas Meyer\nAlexander Vo");  
+        JOptionPane.showMessageDialog(f,"Team Members:\nLuis Gonzalez\nRoberto Marracino\nNicholas Meyer\nAlexander Vo");  
         
 
     }//GEN-LAST:event_jaboutMouseClicked
 
+    private void jMenuItemRosterLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRosterLoadActionPerformed
+        // TODO add your handling code here:
+      /// JFileChooser fileChooser = new JFileChooser();
+      javax.swing.JFrame f=new javax.swing.JFrame();  
+                switch (jFileChooser1.showOpenDialog(f)) {
+                    case JFileChooser.APPROVE_OPTION:
+                        // Open file...
+                        break;
+                }
+            
+        
+    }//GEN-LAST:event_jMenuItemRosterLoadActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -172,15 +158,14 @@ public class theFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog AboutPopup;
     private javax.swing.JMenu Jfile;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemAddAtendence;
+    private javax.swing.JMenuItem jMenuItemPlot;
+    private javax.swing.JMenuItem jMenuItemRosterLoad;
+    private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JMenu jabout;
     // End of variables declaration//GEN-END:variables
+
 }
