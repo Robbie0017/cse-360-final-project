@@ -6,8 +6,11 @@
 //package cse360finalproject;
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
+import java.awt.*;
 
 /**
  *
@@ -15,7 +18,9 @@ import java.util.Scanner;
  */
 public class fileChooser extends Observable {
 
-    public static void openFile() {
+    public static final String delimiter = ",";
+
+    public static void openFile() throws IOException {
         //variables
         File file;
         Scanner fileIn;
@@ -32,22 +37,34 @@ public class fileChooser extends Observable {
         if (response == JFileChooser.APPROVE_OPTION) {
             //put chosen file into variable "file"
             file = fc.getSelectedFile();
-
-            try {
-                fileIn = new Scanner(file);
-                if (file.isFile()) {
-                    while (fileIn.hasNextLine()) {
-                        String line = fileIn.nextLine();
-                        System.out.println(line);
-                    }
-                } else {
-                    System.out.println("That was not a file!");
+            try
+            {
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String line ="";
+                List<String[]> lines = new ArrayList<String[]>();
+                while ((line = br.readLine()) != null)
+                {
+                    lines.add(line.split(delimiter));
                 }
-                fileIn.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                // convert our list to a String array.
+                String[][] data = new String[lines.size()][0];
+                lines.toArray(data);
+                JFrame f;
+                f = new JFrame();
+                String column[] = {"ID", "First Name", "Last Name", "Program and Plan", "Academic Level","ASURITE"};
+                JTable jt = new JTable(data, column);
+                jt.setBounds(600, 400, 600, 400);
+                JScrollPane sp = new JScrollPane(jt);
+                f.add(sp);
+                f.setSize(700, 500);
+                f.setVisible(true);
+                br.close();
             }
-
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
         }
     }
 }

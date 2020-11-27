@@ -7,6 +7,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 /**
  *
@@ -55,7 +56,11 @@ public class theFrame extends javax.swing.JFrame {
         jMenuItemRosterLoad.setText("Load a Roster");
         jMenuItemRosterLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemRosterLoadActionPerformed(evt);
+                try {
+                    jMenuItemRosterLoadActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         Jfile.add(jMenuItemRosterLoad);
@@ -111,7 +116,7 @@ public class theFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jaboutMouseClicked
 
-    private void jMenuItemRosterLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRosterLoadActionPerformed
+    private void jMenuItemRosterLoadActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jMenuItemRosterLoadActionPerformed
         // TODO add your handling code here:
         /// JFileChooser fileChooser = new JFileChooser();
         javax.swing.JFrame f = new javax.swing.JFrame();
@@ -119,6 +124,7 @@ public class theFrame extends javax.swing.JFrame {
             //case JFileChooser.APPROVE_OPTION:
                 // Open file...
                 fileChooser.openFile();
+                this.repaint();
                 //....
                 //break;
         //}
