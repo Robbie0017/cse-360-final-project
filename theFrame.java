@@ -7,13 +7,18 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
  * @author user
  */
 public class theFrame extends javax.swing.JFrame {
+	
+	boolean Roster = false;
 
 
     fileChooser filechooser = new fileChooser();
@@ -41,6 +46,7 @@ public class theFrame extends javax.swing.JFrame {
         jMenuItemSave = new javax.swing.JMenuItem();
         jMenuItemPlot = new javax.swing.JMenuItem();
         jabout = new javax.swing.JMenu();
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CSE360 Final Project");
@@ -67,10 +73,28 @@ public class theFrame extends javax.swing.JFrame {
 
         jMenuItemAddAtendence.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItemAddAtendence.setText("Add Attendence");
+        jMenuItemAddAtendence.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+        		try {
+        			jMenuItemAddAtendanceLoadActionPerformed(evt);
+        		} catch (IOException e) {
+        			e.printStackTrace();
+        		}
+        	}
+        });
         Jfile.add(jMenuItemAddAtendence);
 
         jMenuItemSave.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItemSave.setText("Save");
+        jMenuItemSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    jMenuItemSaveActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         Jfile.add(jMenuItemSave);
 
         jMenuItemPlot.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -104,33 +128,70 @@ public class theFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jaboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jaboutMouseClicked
+    public void jaboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jaboutMouseClicked
         // TODO add your handling code here:
         //AboutPopup.setVisible(true);
         javax.swing.JFrame f=new javax.swing.JFrame();
         UIManager.put("OptionPane.minimumSize",new Dimension(400,300));
         UIManager.put("OptionPane.messageFont", new Font("Times New Roman", Font.BOLD, 27));
         UIManager.put("OptionPane.buttonFont", new Font("Times New Roman", Font.BOLD, 27));
-        JOptionPane.showMessageDialog(f,"Team Members:\nLuis Gonzalez\nRoberto Marracino\nNicholas Meyer\nAlexander Vo");
+        JOptionPane.showMessageDialog(f,"Team Members:\nLuis Gonzalez\nRoberto Marracino\nNicholas Meyer\nRyan Pan\nAlexander Vo");
 
 
     }//GEN-LAST:event_jaboutMouseClicked
 
-    private void jMenuItemRosterLoadActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jMenuItemRosterLoadActionPerformed
+    public void jMenuItemRosterLoadActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_jMenuItemRosterLoadActionPerformed
         // TODO add your handling code here:
         /// JFileChooser fileChooser = new JFileChooser();
         javax.swing.JFrame f = new javax.swing.JFrame();
         //switch (jFileChooser1.showOpenDialog(f)) {
             //case JFileChooser.APPROVE_OPTION:
                 // Open file...
-                fileChooser.openFile();
+               fileChooser.openFile();
                 this.repaint();
+                Roster = true;
                 //....
                 //break;
-        //}
-
-
     }//GEN-LAST:event_jMenuItemRosterLoadActionPerformed
+    
+    public void jMenuItemAddAtendanceLoadActionPerformed(java.awt.event.ActionEvent evt) throws IOException 
+    {
+    	if(Roster == true)
+    	{
+    		javax.swing.JFrame f = new javax.swing.JFrame();
+    	try {
+            fileChooser.openAttendanceFile();
+        } catch (IOException ex) {
+            Logger.getLogger(theFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       /// fileChooser.combineCSV();
+         this.repaint();
+    	}
+    	else
+    	{
+    		 javax.swing.JFrame f=new javax.swing.JFrame();
+    	        UIManager.put("OptionPane.minimumSize",new Dimension(400,300));
+    	        UIManager.put("OptionPane.messageFont", new Font("Times New Roman", Font.BOLD, 27));
+    	        UIManager.put("OptionPane.buttonFont", new Font("Times New Roman", Font.BOLD, 27));
+    	        JOptionPane.showMessageDialog(f,"Please Load Roster First");
+    	}
+    }
+    
+    public void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) throws IOException
+    {
+
+        try {
+            ExcelExporter exp = new ExcelExporter();
+            exp.exportTable(fileChooser.getTable(), new File("results.xls"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+    }
+    
+
 
     /**
      * @param args the command line arguments
