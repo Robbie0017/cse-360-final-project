@@ -35,7 +35,7 @@ public class Scatterplot extends JFrame {
     XYDataset dataset = createDataset();
 
     // Create chart
-    JFreeChart chart = ChartFactory.createScatterPlot("Attendance", "Count/Minutes", "X-Axis", dataset, PlotOrientation.HORIZONTAL, true,true, true);
+    JFreeChart chart = ChartFactory.createScatterPlot("Attendance", "Y-axis", "Count/Minutes", dataset, PlotOrientation.HORIZONTAL, true,true, true);
 
     
     //Changes background color
@@ -52,34 +52,67 @@ public class Scatterplot extends JFrame {
     XYSeriesCollection dataset = new XYSeriesCollection();
 
    //First Date Attendance series
-    XYSeries series1 = new XYSeries("NOV 03");
-    series1.add(1, 20);
-    series1.add(2, 27);
-    series1.add(3, 30);
-    series1.add(4, 45);
-    series1.add(5, 57);
-    series1.add(6, 60);
-    series1.add(7, 65);
-    series1.add(8, 70);
-    series1.add(9, 75);
-    series1.add(10, 75);
+    XYSeries series1 = new XYSeries("Student01");
+    series1.add(1, 60);
+    series1.add(2, 59);
+    series1.add(3, 16);
+    series1.add(4, 13);
+   
 
     dataset.addSeries(series1);
     
     //Second Date Attendance series
-    XYSeries series2 = new XYSeries("NOV 10");
-    series2.add(1, 10);
+    XYSeries series2 = new XYSeries("Student02");
+    series2.add(1, 75);
     series2.add(2, 15);
-    series2.add(3, 23);
-    series2.add(4, 33);
-    series2.add(5, 41);
-    series2.add(6, 55);
-    series2.add(7, 59);
-    series2.add(8, 64);
-    series2.add(9, 70);
-    series2.add(10, 75);
+    series2.add(3, 41);
+    series2.add(4, 22);
+  
 
     dataset.addSeries(series2);
+      //Second Date Attendance series
+    XYSeries series3 = new XYSeries("Student03");
+    series3.add(1, 50);
+    series3.add(2, 61);
+    series3.add(3, 33);
+    series3.add(4, 56);
+  
+
+    dataset.addSeries(series3);
+    //Second Date Attendance series
+    XYSeries series4 = new XYSeries("Student04");
+    series4.add(1, 41);
+    series4.add(2, 35);
+    series4.add(3, 25);
+    series4.add(4, 27);
+    
+
+    dataset.addSeries(series4);
+    //Second Date Attendance series
+    XYSeries series5 = new XYSeries("Student05");
+    series5.add(1, 60);
+    series5.add(2, 58);
+    series5.add(3, 9);
+    series5.add(4, 10);
+
+    dataset.addSeries(series5);
+    
+    XYSeries series6 = new XYSeries("Student06");
+    series6.add(1, 75);
+    series6.add(2, 70);
+    series6.add(3, 27);
+    series6.add(4, 43);
+
+    dataset.addSeries(series6);
+    
+    XYSeries series7 = new XYSeries("Student07");
+    series7.add(1, 74);
+    series7.add(2, 72);
+    series7.add(3, 44);
+    series7.add(4, 23);
+    
+
+    dataset.addSeries(series7);
 
     return dataset;
   }

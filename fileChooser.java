@@ -24,6 +24,9 @@ public class fileChooser extends Observable {
         public static String data3[][] = new String[400][6];
         public static JTable jt1;
         
+        public static String[][] getdata(){
+            return data3;
+        }
      
 
     public static void openFile() {

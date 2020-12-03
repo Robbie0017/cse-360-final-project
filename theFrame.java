@@ -5,6 +5,7 @@
  */
 //package cse360finalproject;
 
+import finalproject.Scatterplot;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -99,6 +100,11 @@ public class theFrame extends javax.swing.JFrame {
 
         jMenuItemPlot.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItemPlot.setText("Plot Data");
+        jMenuItemPlot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPlotActionPerformed(evt);
+            }
+        });
         Jfile.add(jMenuItemPlot);
 
         jMenuBar1.add(Jfile);
@@ -177,18 +183,27 @@ public class theFrame extends javax.swing.JFrame {
     	        JOptionPane.showMessageDialog(f,"Please Load Roster First");
     	}
     }
-    
+   
     public void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) throws IOException
     {
 
-        try {
+       /* try {
             ExcelExporter exp = new ExcelExporter();
             exp.exportTable(fileChooser.getTable(), new File("results.xls"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
-        }
+        }*/
 
+    }
+    private void jMenuItemPlotActionPerformed(java.awt.event.ActionEvent evt) {
+       SwingUtilities.invokeLater(() -> {
+      Scatterplot example = new Scatterplot("Example");
+      example.setSize(800, 400);
+      example.setLocationRelativeTo(null);
+      example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      example.setVisible(true);
+    });
     }
     
 
@@ -220,6 +235,7 @@ public class theFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+           
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
